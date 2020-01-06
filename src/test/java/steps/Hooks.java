@@ -54,16 +54,6 @@ public class Hooks {
                     break;
                 case "browserstack":
                     driver = Driver.getBrowserstackDriver(scenario);
-                    break;
-//                case "docker":
-//                    driver = Driver.getDockerDriver();
-//                    break;
-//                case "ios":
-//                    driver = Driver.getIOSDriver();
-//                    break;
-//                case "saucelabs":
-//                    driver = Driver.getSauceDriver();
-//                    break;
             }
             logger.info("Driver is initialized");
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -80,8 +70,6 @@ public class Hooks {
         try {
             if (scenario.isFailed())
                 getScreenshot(scenario);
-            if (endpoint.equalsIgnoreCase("saucelabs"))
-                updateSauceResults(scenario);
             else if (endpoint.equalsIgnoreCase("browserstack"))
                 updateBrowserStackResults(scenario);
             driver.quit();
@@ -118,11 +106,6 @@ public class Hooks {
             logger.fatal("Failed to generate screenshot: " + err);
             Assert.fail("ERROR : " + "Failed to generate screenshot: " + err);
         }
-    }
-
-    private void updateSauceResults(Scenario scenario) {
-        String status = scenario.isFailed() ? "failed" : "passed";
-        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + (status));
     }
 
     private void updateBrowserStackResults(Scenario scenario) {

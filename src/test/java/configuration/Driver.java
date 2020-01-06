@@ -28,7 +28,7 @@ public class Driver {
             File app = new File("src/test/resources/" + Hooks.setValue("and_app"));
             caps.setCapability("app", app.getAbsolutePath());
 //        caps.setCapability("appPackage", "tv.obs.ovp.debug");
-//        caps.setCapability("appActivity", "com.mediamonks.obs.ui.screens.splash.SplashActivity");
+//        caps.setCapability("appActivity", "com.wikipedia.screens.splash.SplashActivity");
             return new AppiumDriver(new URL(Hooks.setValue("appium_server")), caps);
         } catch (Throwable err) {
             logger.fatal("Android Driver is not initialized" + ": " + err);
