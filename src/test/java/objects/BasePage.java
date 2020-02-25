@@ -18,7 +18,6 @@ public class BasePage {
 
     public static AppiumDriver driver;
 
-    @iOSXCUITFindBy(id = "OlympicVideoPlayer.FeedView")
     @AndroidFindBy(id = "logo")
     protected MobileElement logo;
 
